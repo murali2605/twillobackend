@@ -1,47 +1,47 @@
-const http = require('http');
-const express = require('express');
-const { urlencoded } = require('body-parser');
+// const http = require('http');
+// const express = require('express');
+// const { urlencoded } = require('body-parser');
 
-// Set up our express web application
-const PORT = 8767;
-const app = express();
-app.use(urlencoded({ extended: false }));
+// // Set up our express web application
+// const PORT = 8767;
+// const app = express();
+// app.use(urlencoded({ extended: false }));
 
 // This is the URL that will be requested when your number receives a call
 // It will be requested without a "Digits" parameter intitially, but subsequent
 // requests will contain "Digits"
-app.post('/voice', (request, response) => {
-  const { Digits, From } = request.body;
+// app.post('/voice', (request, response) => {
+//   const { Digits, From } = request.body;
   
-  console.log('Incoming call from ', From);
-  let twiml = '';
+//   console.log('Incoming call from ', From);
+//   let twiml = '';
 
   // This is the first time the URL has been requested, so no Digits
-  if (!Digits) {
-    twiml = `
-      <Response>
-        <Gather>
-          <Say>
-            Press any series of numbers on your keypad. Go nuts. You can end
-            your D T M F rampage by pressing the hash key.
-          </Say>
-        </Gather>
-      </Response>
-    `;
-  } else {
+//   if (!Digits) {
+//     twiml = `
+//       <Response>
+//         <Gather>
+//           <Say>
+//             Press any series of numbers on your keypad. Go nuts. You can end
+//             your D T M F rampage by pressing the hash key.
+//           </Say>
+//         </Gather>
+//       </Response>
+//     `;
+//   } else {
     // If Digits has been populated, repeat them back
-    twiml = `
-      <Response>
-        <Say>You entered: ${Digits}</Say>
-        <Say>Goodbye!</Say>
-      </Response>
-    `;
-  }
+//     twiml = `
+//       <Response>
+//         <Say>You entered: ${Digits}</Say>
+//         <Say>Goodbye!</Say>
+//       </Response>
+//     `;
+//   }
 
   // Finally, return the TwiML
-  response.type('text/xml');
-  response.send(twiml);
-}).listen(process.env.PORT || 5000)
+//   response.type('text/xml');
+//   response.send(twiml);
+// }).listen(process.env.PORT || 5000)
 
 // Use a tunneling tool like ngrok to expose this server to the public Internet!
 // Create and run an HTTP server which can handle incoming requests
@@ -49,3 +49,12 @@ app.post('/voice', (request, response) => {
 // server.listen(PORT, () =>
 //   console.log(`Express server listening on localhost:${PORT}`)
 // );
+var express = require(‘express’);
+var port = process.env.PORT || 3000;
+var app = express();
+app.get(‘/’, function (req, res) {
+ res.send(JSON.stringify({ Hello: ‘World’}));
+});
+app.listen(port, function () {
+ console.log(`Example app listening on port !`);
+});
