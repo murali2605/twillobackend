@@ -41,11 +41,11 @@ app.post('/voice', (request, response) => {
   // Finally, return the TwiML
   response.type('text/xml');
   response.send(twiml);
-});
+}).listen(process.env.PORT || 5000)
 
 // Use a tunneling tool like ngrok to expose this server to the public Internet!
 // Create and run an HTTP server which can handle incoming requests
-const server = http.createServer(app);
-server.listen(PORT, () =>
-  console.log(`Express server listening on localhost:${PORT}`)
-);
+// const server = http.createServer(app);
+// server.listen(PORT, () =>
+//   console.log(`Express server listening on localhost:${PORT}`)
+// );
