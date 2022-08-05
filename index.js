@@ -6,9 +6,11 @@ const app = express();
 app.use(urlencoded({ extended: false }));
 app.post('/voice', function (req, res) {
  let twiml = '';
- <Response>
-  <Dial>+918328272581</Dial>
-</Response>
+twiml = `
+    <Response>
+      <Dial>+918328272581</Dial>
+    </Response>
+  `;
 res.type('text/xml');
 res.send(twiml)
 });
