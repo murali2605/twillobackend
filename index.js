@@ -1,12 +1,29 @@
 const http = require('http');
 const express = require('express');
 const { urlencoded } = require('body-parser');
+
+// Set up our express web application
 // const PORT = 8767;
+var port = process.env.PORT || 3000;
 const app = express();
 app.use(urlencoded({ extended: false }));
-app.get(‘/’, function (req, res) {
- res.send(JSON.stringify({ Hello: ‘World’}));
-}).listen(process.env.PORT || 5000)
+app.get('/', function (req, res) {
+ res.send(JSON.stringify({ Hello: 'World'}));
+});
+app.listen(port, function () {
+ console.log(`Example app listening on port !`);
+});
+
+
+// const http = require('http');
+// const express = require('express');
+// const { urlencoded } = require('body-parser');
+// // const PORT = 8767;
+// const app = express();
+// app.use(urlencoded({ extended: false }));
+// app.get(‘/’, function (req, res) {
+//  res.send(JSON.stringify({ Hello: ‘World’}));
+// }).listen(process.env.PORT || 5000)
 
 // app.post('/voice', (request, response) => {
 //   const { Digits, From } = request.body;
